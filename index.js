@@ -29,10 +29,27 @@ const {
 } = process.env;
 
 // Connect MongoDB
+// mongoose
+//   .connect(MONGO_URI)
+//   .then(() => console.log("✅ MongoDB Connected"))
+//   .catch((err) => console.error("❌ MongoDB Error:", err.message));
+
+
+
+
+
+
+
+
+
 mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB Error:", err.message));
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 10000, // ⏳ avoids long hangs
+  })
+  .then(() => console.log("✅ MongoDB Connected ✅"))
+  .catch((err) => console.error("❌ MongoDB Error:", err));
 
 const authConfig = {
   auth: {
