@@ -269,6 +269,24 @@ app.get("/api/tasks/search/:key", apiLimiter, async (req, res) => {
 
 
 
+
+// -------------------------------------------check db connection---------------------
+app.get("/api/db-status", async (req, res) => {
+  const state = mongoose.connection.readyState;
+  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+  const states = ["disconnected", "connected", "connecting", "disconnecting"];
+  res.json({
+    status: states[state],
+    message:
+      state === 1
+        ? "✅ MongoDB is connected successfully!"
+        : "⚠️ MongoDB is not connected.",
+  });
+});
+
+
+
+
 app.listen(PORT, () =>
   console.log(`🚀 Server running on http://localhost:${PORT}`)
 );
