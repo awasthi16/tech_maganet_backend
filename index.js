@@ -27,7 +27,7 @@ const {
 } = process.env;
 
 // ------------------------------------
-// ✅ MongoDB Connection
+//  MongoDB Connection
 // ------------------------------------
 mongoose
   .connect(MONGO_URI, {
@@ -103,7 +103,7 @@ app.post("/api/tasks", async (req, res) => {
       priority = 1,
     } = req.body;
 
-    // ✅ Validate Required Fields
+    // Validate Required Fields
     if (!keyword || !language_code || !location_code) {
       return res.status(400).json({
         message:
